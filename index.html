@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我是canvas练习</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		h4{
+			display: inline-block;
+			margin-right: 20px;
+		}
+		canvas{
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+<p>我是canvas框</p>
+<canvas id="tutorial" width="300" height="300"></canvas>
+
+<div class="group">
+	<h4>绘制矩形</h4><button type="button" class="btn btn-primary" onclick="draw()">绘制矩形</button>
+	<pre><code>
+		ctx.fillRect(10, 10, 100, 50);     // 绘制矩形，填充的默认颜色为黑色
+	    ctx.strokeRect(10, 70, 100, 100);  // 绘制矩形边框
+	</code></pre>
+</div>
+<div class="group">
+	<h4>绘制线段</h4><button type="button" class="btn btn-primary" onclick="draw2()">绘制线段</button>
+	<pre class="pre-scrollable"><code>
+		ctx.beginPath(); //新建一条path
+	    ctx.moveTo(50, 50); //把画笔移动到指定的坐标
+	    ctx.lineTo(200, 50);  //绘制一条从当前位置到指定坐标(200, 50)的直线.
+	    //闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+	    ctx.closePath();
+	    ctx.stroke(); //绘制路径。
+	</code></pre>
+</div>
+<div class="group">
+	<h4>绘制三角形</h4><button type="button" class="btn btn-primary" onclick="draw3()">绘制三角形</button><button type="button" class="btn btn-primary" onclick="changeColor()">更改颜色</button>
+	<pre class="pre-scrollable"><code>
+		ctx.beginPath();
+	    ctx.moveTo(50, 50);
+	    ctx.lineTo(200, 50);
+	    ctx.lineTo(200, 200);
+	    ctx.closePath(); //虽然我们只绘制了两条线段，但是closePath会closePath，仍然是一个3角形
+	    ctx.stroke(); //描边。stroke不会自动closePath()
+	</code></pre>
+</div>
+
+<div class="group">
+	<h4>绘制圆弧和半圆</h4><button type="button" class="btn btn-primary" onclick="draw4()">绘制圆弧</button></button>
+	<pre class="pre-scrollable"><code>
+		ctx.beginPath();
+	    ctx.arc(50, 50, 40, 0, Math.PI / 2, false);
+	    ctx.stroke();
+	 
+	    ctx.beginPath();
+	    ctx.arc(150, 50, 40, 0, -Math.PI / 2, true);
+	    ctx.closePath();
+	    ctx.stroke();
+	 
+	    ctx.beginPath();
+	    ctx.arc(50, 150, 40, -Math.PI / 2, Math.PI / 2, false);
+	    ctx.fill();
+	 
+	    ctx.beginPath();
+	    ctx.arc(150, 150, 40, 0, Math.PI, false);
+	    ctx.fill();
+	</code></pre>
+</div>
+
+<script type="text/javascript">
+	var canvas = document.getElementById('tutorial');
+	var ctx = canvas.getContext("2d");
+	function draw(){
+		clearCanvas();
+	    ctx.fillRect(10, 10, 100, 50);     // 绘制矩形，填充的默认颜色为黑色
+	    ctx.strokeRect(10, 70, 100, 100);   // 绘制矩形边框
+	}
+	function draw2(){
+		clearCanvas();
+	    ctx.beginPath(); //新建一条path
+	    ctx.moveTo(50, 50); //把画笔移动到指定的坐标
+	    ctx.lineTo(200, 50);  //绘制一条从当前位置到指定坐标(200, 50)的直线.
+	    //闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+	    ctx.closePath();
+	    ctx.stroke(); //绘制路径。
+	}
+	function draw3(){
+		ctx.beginPath();
+	    ctx.moveTo(50, 50);
+	    ctx.lineTo(200, 50);
+	    ctx.lineTo(200, 200);
+        ctx.closePath(); //虽然我们只绘制了两条线段，但是closePath会closePath，仍然是一个3角形
+    	ctx.stroke(); //描边。stroke不会自动closePath()
+	}
+	function draw4(){
+		ctx.beginPath();
+	    ctx.arc(50, 50, 40, 0, Math.PI / 2, false);
+	    ctx.stroke();
+	 
+	    ctx.beginPath();
+	    ctx.arc(150, 50, 40, 0, -Math.PI / 2, true);
+	    ctx.closePath();
+	    ctx.stroke();
+	 
+	    ctx.beginPath();
+	    ctx.arc(50, 150, 40, -Math.PI / 2, Math.PI / 2, false);
+	    ctx.fill();
+	 
+	    ctx.beginPath();
+	    ctx.arc(150, 150, 40, 0, Math.PI, false);
+	    ctx.fill();
+	}
+	function changeColor(){
+		ctx.fillStyle="#FF0000";
+		ctx.fill();
+	}
+	function clearCanvas(){
+		ctx.clearRect(0,0,canvas.width,canvas.height);  
+	}
+</script>
+</body>
+</html>

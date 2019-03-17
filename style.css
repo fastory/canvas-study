@@ -1,0 +1,162 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @fastory
+Sign out
+ Watch 0
+ Star 0  Fork 1 jerryHZLiang/canvas-drawing-board
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+Branch: master Find file Copy path canvas-drawing-board/style.css
+@jerryHZLiang jerryHZLiang 更改界面UI, 修改移动过快， 出现断点的问题
+c7bae30  on 25 Dec 2018
+1 contributor
+142 lines (120 sloc)  2.04 KB
+RawBlameHistory
+    
+/* iconfont 引入 */
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+
+/* 初始化 */
+*{  
+    margin: 0;
+    padding: 0;   
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+ul{list-style: none;}
+
+
+body {
+    overflow: hidden;
+}
+
+#canvas {
+    background: #eee;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+#options{
+    position: fixed;        /*使所有选项在canvas之上，此外也可以用z-index达到同样的效果*/
+    top:0;
+    right: 0;
+    padding: 10px;
+}
+
+ul {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    cursor: pointer;
+    margin: 4px;
+}
+
+#actions svg{
+    width: 1.5em;
+    height: 1.5em;
+    transition: all 0.3s;
+    margin: 0 5px;
+}
+
+#actions svg.active{
+    fill: red;
+    transform: scale(1.25);
+    
+}
+
+.colors> li{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    transition: 0.2s ease-out;
+}
+
+.colors> li.black{
+    background: black;
+}
+.colors> li.red{
+    background: red;
+}
+
+.colors> li.green{
+    background: green;
+}
+.colors> li.blue{
+    background:blue;
+}
+
+.colors> li.active{
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.95);
+    transform: scale(1.2);
+}
+
+
+.sizes > li{
+    margin: 10px;
+    height: 20px;
+    background-color: black;
+    box-shadow: 0 0 4px rgba(80, 80, 80, 0.4);
+    transition: all 0.2s ease-out;
+    position: relative;
+}
+
+.sizes > li::after{
+    content: '';
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+  }
+
+.sizes > .thin{
+    width: 2px;
+}
+.sizes > .middle{
+    width: 6px;
+}
+
+.sizes > .thick{
+    width:10px;
+}
+
+.colors> li.active,
+.sizes > li.active
+{
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.95);
+    transform: scale(1.2);
+}
+
+.color.active,
+.sizes.active{
+  animation: active 0.2s;
+  transition: all 0.2s;
+}
+@keyframes active{
+  0%{
+    display: inline-flex;
+    transform: translate(-999px);
+  }
+  80%{
+    transform: translate(10px);
+  }
+  100%{
+    transform: translate(0px);
+  }
+}
+
